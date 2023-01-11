@@ -3,7 +3,6 @@ import LoginPresenter from "./login.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
-import { API_ADDRESS } from "../../../commons/api/constants";
 import { useRouter } from "next/router";
 
 const schema = yup.object({
@@ -20,7 +19,7 @@ export default function LoginContainer() {
 
   const onClickLogin = (data: FieldValues) => {
     axios
-      .post(`${API_ADDRESS}/users/login`, {
+      .post(`${process.env.NEXT_PUBLIC_API_KEY}/users/login`, {
         ...data,
       })
       .then((response) => {

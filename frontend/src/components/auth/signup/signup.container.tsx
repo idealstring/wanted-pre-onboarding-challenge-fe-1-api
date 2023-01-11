@@ -2,7 +2,6 @@ import * as yup from "yup";
 import SingUpPresenter from "./signup.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, useForm } from "react-hook-form";
-import { API_ADDRESS } from "../../../commons/api/constants";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -20,7 +19,7 @@ export default function SingUpContainer() {
 
   const onClickResiter = (data: FieldValues) => {
     axios
-      .post(`${API_ADDRESS}/users/create`, {
+      .post(`${process.env.NEXT_PUBLIC_API_KEY}/users/create`, {
         ...data,
       })
       .then(() => {
