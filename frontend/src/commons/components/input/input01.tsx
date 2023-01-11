@@ -9,7 +9,7 @@ import { styleSet } from "../../styles/styleSet";
 
 export default function Input01(props: IInput01Props) {
   return (
-    <>
+    <Wrapper>
       <Input
         id={props.id}
         width={props.width || "100%"}
@@ -22,17 +22,24 @@ export default function Input01(props: IInput01Props) {
       <Error className="error" error={props.error}>
         {String(props.error)}
       </Error>
-    </>
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+`;
+
 const Input = styled.input`
+  width: 100%;
   padding: 1rem;
   border-radius: 2px;
   border: 1px solid ${styleSet.colors.primary};
 `;
 
-const Error = styled.span`
+const Error = styled.div`
   position: absolute;
   top: 50%;
   right: 1rem;
