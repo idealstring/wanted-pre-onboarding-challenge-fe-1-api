@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { ACCESS_TOKEN_KEY } from "../../../commons/api/constants";
 
 const schema = yup.object({
   email: yup.string().email("이메일 형식 확인").required("필수"),
@@ -22,9 +23,9 @@ export default function SingUpContainer() {
       .post(`${process.env.NEXT_PUBLIC_API_KEY}/users/create`, {
         ...data,
       })
-      .then(() => {
+      .then((response) => {
         alert("회원가입 완료");
-        router.push("/users/login");
+        router.push("/auth/login");
       })
       .catch((error) => {
         alert(error);

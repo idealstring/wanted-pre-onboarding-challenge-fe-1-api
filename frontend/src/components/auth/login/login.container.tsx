@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { ACCESS_TOKEN_KEY } from "../../../commons/api/constants";
 
 const schema = yup.object({
   email: yup.string().email("이메일 형식 확인").required("필수"),
@@ -23,7 +24,7 @@ export default function LoginContainer() {
         ...data,
       })
       .then((response) => {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem(ACCESS_TOKEN_KEY, response.data.token);
         alert(response.data.message);
         router.push("/");
       })

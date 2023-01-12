@@ -1,9 +1,6 @@
-function HomePage() {
-  return (
-    <>
-      <main>초기세팅</main>
-    </>
-  );
-}
+import UseAuth from "../src/commons/hooks/useAuth";
+import IndexContainer from "../src/components/index/index.container";
 
-export default HomePage;
+export default function HomePage() {
+  return <IndexContainer />;
+}
