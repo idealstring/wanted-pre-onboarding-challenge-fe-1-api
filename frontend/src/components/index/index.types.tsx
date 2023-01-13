@@ -10,7 +10,7 @@ export type IIndexPresenterProps = {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickDeleteTodo: (id: string) => void;
   onClickCreateTodo: (inputData: FieldValues) => void;
-  onClickUpdateTodo: (inputData: FieldValues, id: string) => void;
+  onClickUpdateTodo: (inputData: string, id: string) => void;
 };
 
 export type ITodo = {
@@ -24,5 +24,5 @@ export type ITodo = {
 export type IIndexPresenterTodoProps = {
   todo: ITodo;
   onClickDeleteTodo: (id: string) => void;
-  onClickUpdateTodo: (data: FieldValues, id: string) => void;
+  onClickUpdateTodo: (data: string, id: string) => void;
 };

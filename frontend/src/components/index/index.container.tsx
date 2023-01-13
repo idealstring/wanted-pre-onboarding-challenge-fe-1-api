@@ -30,7 +30,7 @@ export default function IndexContainer() {
       .catch((error) => (error ? alert("error") : null));
   };
 
-  const onClickUpdateTodo = (inputData: FieldValues, id: string) => {
+  const onClickUpdateTodo = (inputData: string, id: string) => {
     client
       .put(`/todos/${id}`, { title: inputData })
       .then(() => {
