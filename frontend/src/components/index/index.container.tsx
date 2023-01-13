@@ -20,11 +20,21 @@ export default function IndexContainer() {
       .catch((error) => (error ? alert("error") : null));
   }, []);
 
-  const onClickCreateTodo = (data: FieldValues) => {
+  const onClickCreateTodo = (inputData: FieldValues) => {
     client
-      .post("/todos", { ...data })
+      .post("/todos", { ...inputData })
       .then(() => {
         alert("등록완료");
+        router.reload();
+      })
+      .catch((error) => (error ? alert("error") : null));
+  };
+
+  const onClickUpdateTodo = (inputData: FieldValues, id: string) => {
+    client
+      .put(`/todos/${id}`, { title: inputData })
+      .then(() => {
+        alert("수정완료");
         router.reload();
       })
       .catch((error) => (error ? alert("error") : null));
@@ -46,6 +56,7 @@ export default function IndexContainer() {
       register={register}
       handleSubmit={handleSubmit}
       onClickCreateTodo={onClickCreateTodo}
+      onClickUpdateTodo={onClickUpdateTodo}
       onClickDeleteTodo={onClickDeleteTodo}
     />
   );

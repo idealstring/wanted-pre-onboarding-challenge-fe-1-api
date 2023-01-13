@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ChangeEvent } from "react";
 import {
   FieldError,
   FieldErrorsImpl,
@@ -18,6 +19,7 @@ export default function Input01(props: IInput01Props) {
         placeholder={props.placeholder}
         disabled={props.disabled || false}
         defaultValue={props.defaultValue}
+        onChange={props.onChange}
       />
       <Error className="error" error={props.error}>
         {String(props.error)}
@@ -33,7 +35,7 @@ const Wrapper = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: ${(props: IInputProps) => (props.width ? props.width : "100%")};
   padding: 1rem;
   border-radius: 2px;
   border: 1px solid ${styleSet.colors.primary};
@@ -45,9 +47,9 @@ const Error = styled.div`
   right: 1rem;
   color: ${styleSet.colors.primary};
   transition: all 0.35s;
-  transform: ${(P: IInputProps) =>
-    P.error ? `translate(0, -50%)` : `translate(5rem, -50%)`};
-  opacity: ${(P: IInputProps) => (P.error ? `1` : `0`)};
+  transform: ${(props: IInputProps) =>
+    props.error ? `translate(0, -50%)` : `translate(5rem, -50%)`};
+  opacity: ${(props: IInputProps) => (props.error ? `1` : `0`)};
 `;
 
 interface IInput01Props {
@@ -64,6 +66,7 @@ interface IInput01Props {
     | FieldError
     | Merge<FieldError, FieldErrorsImpl<any>>
     | undefined;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 type IInputProps = {
@@ -73,4 +76,5 @@ type IInputProps = {
     | Merge<FieldError, FieldErrorsImpl<any>>
     | undefined;
   edit?: boolean;
+  width?: string;
 };
