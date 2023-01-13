@@ -9,6 +9,7 @@ export type IIndexPresenterProps = {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onClickCreateTodo: (data: FieldValues) => void;
   todos: never[];
+  onClickDeleteTodo: (id: string) => void;
 };
 
 export type ITodo = {
